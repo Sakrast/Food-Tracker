@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+Food Tracker | Home
+{% endblock %}
+
+
+{% block body %}
+<main class="container">
+    <div class="add-container">
+        <h3 class="add-date"> Add New Date </h3>
+        <form action="/" method="POST">
+            <input type="date" name="date">
+            <button type="submit" class="btn" name="date-btn">Add</button>
+        </form>
+    </div>
+
+
+    <div class="sub-container">
+        {% for r in results %}
+        <div class="individual-sub-container">
+            <h3 class="date"> {{r.readable_date}}</h3>
+            <div class="totals">
+                <ul class="totals-list">
+                    <li>Protein <span>{{r.protein}}</span></li>
+                    <li>Carbohydrates <span>{{r.carbs}}</span></li>
+                    <li>Fat <span>{{r.fat}}</span></li>
+                    <li>Calories <span>{{r.calories}}</span></li>
+                    <li><a href="{{url_for('view', date=r.entry_date)}}" class="view-details">View Details</a></li>
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}

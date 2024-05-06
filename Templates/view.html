@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}
+Food Tracker | Summary
+{% endblock %}
+
+
+{% block body %}
+<main class="container">
+    <div class="box">
+        <h3 class="date-heading"> {{readable_date}} </h3>
+        <div class="select-container">
+            <h3 class="add-food-heading"> Add New Food </h3>
+            <form action="{{url_for('view', date = entry_date)}}" method="POST" class="select-form">
+                <select name="food-selected">
+                    {% for food in food_results %}
+                    <option value= {{food.id}}>{{food.name}}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn">Add</button>
+            </form>
+        </div>
+        <div class="summary-container">
+            <h3 class="summary"> Summary </h3>
+            <div class="totals">
+                <ul class="totals-list">
+                    <li>Protein <span> {{totals.protein}}</span></li>
+                    <li>Carbohydrates <span>{{totals.carbs}}</span></li>
+                    <li>Fat <span>{{totals.fat}}</span></li>
+                    <li>Calories <span>{{totals.calories}}</span></li>
+                </ul>
+            </div>
+        </div>
+        {% for food in log_results %}
+        <div class="individual-summary-container">
+            <h3 class="individual-food-heading"> {{food.name}} </h3>
+            <div class="totals">
+                <ul class="totals-list">
+                    <li>Protein <span>{{food.protein}}</span></li>
+                    <li>Carbohydrates <span>{{food.carbs}}</span></li>
+                    <li>Fat <span>{{food.fat}}</span></li>
+                    <li>Calories <span>{{food.calories}}</span></li>
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

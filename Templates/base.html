@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{url_for('static', filename = 'general.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'styles.css')}}">
+</head>
+<body>  
+
+    <header class="header">
+        <p class="food-tracker">
+            Food Tracker
+        </p>
+
+        <nav class="nav">
+            <ul>
+                <li><a class="nav-link home" href="{{url_for('home')}}">Home</a></li>
+                <li><a class="nav-link open-form" href="#">Add Food</a></li>
+                <li><a class="nav-link food-detail" href="{{url_for('foodDetails')}}">Food Details</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    {% block body %}
+    {% endblock %}   
+    <div class="food-container hidden">
+        <button class="close-container">&times;</button>
+        <p class="food-details"> Enter Food Details</p>
+        <form action="/" method="POST" class="food-form">
+            <label for="food-name">Meal Name</label>
+            <input type="text" name="food-name" id="food-name" class="input-field" placeholder="Omelette">
+            <label for="food-name">Protein</label>
+            <input type="number" name="protein" id="protein" class="input-field" placeholder="15">
+            <label for="carbs">Carbohydrates</label>
+            <input type="number" name="carbs" id="carbs" class="input-field" placeholder="2">
+            <label for="fat">Fat</label>
+            <input type="number" name="fat" id="fat" class="input-field" placeholder="14">
+            <button type="submit" class="btn" name="food-btn">Add</button>
+        </form>
+    </div>
+    <div class="overlay hidden"></div>
+    <script src="{{url_for('static', filename = 'script.js')}}"></script> 
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+Food Tracker | Food Details 
+{% endblock %}
+
+
+{% block body %} 
+<div class="food-details-container">
+    <h2> Food Details </h2>
+    {% for i in results %}
+    <div class="individual-sub-container">
+        <h3 class="date"> {{i.name}} </h3>
+        <div class="totals">
+            <ul class="totals-list">
+                <li>Protein <span>{{i.protein}}</span></li>
+                <li>Carbohydrates <span>{{i.carbs}}</span></li>
+                <li>Fat <span>{{i.fat}}</span></li>
+                <li>Calories <span>{{i.calories}}</span></li>
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %} 
